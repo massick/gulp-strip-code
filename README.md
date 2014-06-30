@@ -72,6 +72,20 @@ Default value: (a generated RegExp matching the start and end comments)
 
 If the default start and end comment matching doesn't work for you needs, you can supply your own RegExp to match against. If the `pattern` option is specified, the `start_comment` and `end_comment` options are ignored.
 
+## Tests
+
+```shell
+npm test
+```
+
+## Contributing
+
+In lieu of a formal styleguide, take care to maintain the existing coding style.
+Add unit tests for any new or changed functionality. Lint and test your code.
+
+## Release History
+
+* 0.1.0 Initial release
 
 ## License
 
