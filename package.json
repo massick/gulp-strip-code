@@ -11,7 +11,24 @@
     "url": "https://github.com/massick/gulp-strip-code.git"
   },
   "keywords": [
-    "gulpplugin"
+    "gulpplugin",
+    "regex",
+    "strip",
+    "remove",
+    "delete",
+    "trim",
+    "comments",
+    "i18n",
+    "internationalization",
+    "localization",
+    "multiline",
+    "parse",
+    "clean",
+    "util",
+    "dev",
+    "development",
+    "env",
+    "environment"
   ],
   "author": "Massimiliano Zoffoli <massick@gmail.com> (http://massimilianozoffoli.com/)",
   "license": "MIT",
