@@ -1,6 +1,6 @@
 {
   "name": "gulp-strip-code",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A gulp plugin to remove parts of code based on regular expressions.",
   "main": "index.js",
   "scripts": {
