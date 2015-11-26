@@ -7,7 +7,7 @@ module.exports = function (options) {
 
         options.start_comment = (typeof options.start_comment === 'undefined') ? 'test-code' : options.start_comment;
         options.end_comment = (typeof options.end_comment === 'undefined') ? 'end-test-code' : options.end_comment;
-        options.keep_comments = (typeof options.keep_comments === 'undefined') ? false : true;
+        options.keep_comments = typeof options.keep_comments !== 'undefined';
 
         var pattern = options.pattern || new RegExp("([\\t ]*\\/\\* ?" + options.start_comment + " ?\\*\\/)[\\s\\S]*?(\\/\\* ?" + options.end_comment + " ?\\*\\/[\\t ]*\\n?)", "g");
 

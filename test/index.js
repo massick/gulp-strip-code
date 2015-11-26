@@ -58,7 +58,7 @@ describe('gulp-replace', function() {
         });
         it('should remove code from start_comment to end_comment on a buffer but keep comments', function(done) {
             var file = new gutil.File({
-                path: 'test/fixtures/original.css',
+                path: 'test/fixtures/originalkeepcomments.css',
                 cwd: 'test/',
                 base: 'test/fixtures',
                 contents: fs.readFileSync('test/fixtures/originalkeepcomments.css')
@@ -66,7 +66,7 @@ describe('gulp-replace', function() {
             var stream = stripCode({
                 start_comment: "keepcomments",
                 end_comment: "end-keepcomments",
-                keep_comment: true
+                keep_comments: true
             });
             stream.on('data', function(newFile) {
                 should.exist(newFile);
