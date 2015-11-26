@@ -56,6 +56,27 @@ describe('gulp-replace', function() {
             stream.write(file);
             stream.end();
         });
+        it('should remove code from start_comment to end_comment on a buffer but keep comments', function(done) {
+            var file = new gutil.File({
+                path: 'test/fixtures/original.css',
+                cwd: 'test/',
+                base: 'test/fixtures',
+                contents: fs.readFileSync('test/fixtures/originalkeepcomments.css')
+            });
+            var stream = stripCode({
+                start_comment: "keepcomments",
+                end_comment: "end-keepcomments",
+                keep_comment: true
+            });
+            stream.on('data', function(newFile) {
+                should.exist(newFile);
+                should.exist(newFile.contents);
+                String(newFile.contents).should.equal(fs.readFileSync('test/expected/modifiedkeepcomments.css', 'utf8'));
+                done();
+            });
+            stream.write(file);
+            stream.end();
+        });
         it('should error on a stream', function(done) {
             var file = new gutil.File({
                 path: 'test/fixtures/original.css',
