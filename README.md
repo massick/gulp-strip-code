@@ -67,10 +67,11 @@ Default value: `end-test-code`
 The text inside the closing comment used to identify code to strip.
 
 #### options.keep_comments
-Type: `Boolean|Truthy`
+Type: `Boolean`
 Default value: `false`
 
-Sets the behaviour to keep the identifying comments or not
+Sets the behaviour to keep the identifying comments or not.
+Setting a truthy value for keep_comments will enable it.
 
 #### options.pattern
 Type: `RegExp`
