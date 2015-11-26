@@ -66,6 +66,12 @@ Default value: `end-test-code`
 
 The text inside the closing comment used to identify code to strip.
 
+#### options.keep_comments
+Type: `Boolean|Truthy`
+Default value: `false`
+
+Sets the behaviour to keep the identifying comments or not
+
 #### options.pattern
 Type: `RegExp`
 Default value: (a generated RegExp matching the start and end comments)
@@ -85,6 +91,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Release History
 
+* 0.1.3 keep comments option added
 * 0.1.2 default values added
 * 0.1.0 Initial release
 
