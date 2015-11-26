@@ -7,14 +7,21 @@ module.exports = function (options) {
 
         options.start_comment = (typeof options.start_comment === 'undefined') ? 'test-code' : options.start_comment;
         options.end_comment = (typeof options.end_comment === 'undefined') ? 'end-test-code' : options.end_comment;
-        var pattern = options.pattern || new RegExp("[\\t ]*\\/\\* ?" + options.start_comment + " ?\\*\\/[\\s\\S]*?\\/\\* ?" + options.end_comment + " ?\\*\\/[\\t ]*\\n?", "g");
+        options.keep_comments = typeof options.keep_comments !== 'undefined';
+
+        var pattern = options.pattern || new RegExp("([\\t ]*\\/\\* ?" + options.start_comment + " ?\\*\\/)[\\s\\S]*?(\\/\\* ?" + options.end_comment + " ?\\*\\/[\\t ]*\\n?)", "g");
 
         if (isStream) {
             return callback(new Error('gulp-strip-code: Streaming not supported'), file);
         }
 
         if (isBuffer) {
-            file.contents = new Buffer(String(file.contents).replace(pattern, ""));
+            if(options.keep_comments){
+                file.contents = new Buffer(String(file.contents).replace(pattern, "$1\n$2"));
+            }
+            else{
+                file.contents = new Buffer(String(file.contents).replace(pattern, ""));
+            }
             return callback(null, file);
         }
 
