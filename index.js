@@ -5,6 +5,9 @@ module.exports = function (options) {
         var isStream = file.contents && typeof file.contents.on === 'function' && typeof file.contents.pipe === 'function';
         var isBuffer = file.contents instanceof Buffer;
 
+        if (typeof options === 'undefined') {
+            options = {};
+        };
         options.start_comment = (typeof options.start_comment === 'undefined') ? 'test-code' : options.start_comment;
         options.end_comment = (typeof options.end_comment === 'undefined') ? 'end-test-code' : options.end_comment;
         options.keep_comments = typeof options.keep_comments === 'undefined' ? false : options.keep_comments;
