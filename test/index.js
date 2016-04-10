@@ -56,7 +56,7 @@ describe('gulp-replace', function() {
             stream.write(file);
             stream.end();
         });
-        it('should remove code from start_comment to end_comment on a buffer but keep comments', function(done) {
+        it('should remove code from start_comment to end_comment but keep comments with the option specified and true', function(done) {
             var file = new gutil.File({
                 path: 'test/fixtures/originalkeepcomments.css',
                 cwd: 'test/',
@@ -72,6 +72,47 @@ describe('gulp-replace', function() {
                 should.exist(newFile);
                 should.exist(newFile.contents);
                 String(newFile.contents).should.equal(fs.readFileSync('test/expected/modifiedkeepcomments.css', 'utf8'));
+                done();
+            });
+            stream.write(file);
+            stream.end();
+        });
+        it('should remove code from start_comment to end_comment without keeping comments with the option specified and false', function(done) {
+            var file = new gutil.File({
+                path: 'test/fixtures/originalkeepcomments.css',
+                cwd: 'test/',
+                base: 'test/fixtures',
+                contents: fs.readFileSync('test/fixtures/originalkeepcomments.css')
+            });
+            var stream = stripCode({
+                start_comment: "keepcomments",
+                end_comment: "end-keepcomments",
+                keep_comments: false
+            });
+            stream.on('data', function(newFile) {
+                should.exist(newFile);
+                should.exist(newFile.contents);
+                String(newFile.contents).should.equal('');
+                done();
+            });
+            stream.write(file);
+            stream.end();
+        });
+        it('should remove code from start_comment to end_comment without keeping comments with the option not specified', function(done) {
+            var file = new gutil.File({
+                path: 'test/fixtures/originalkeepcomments.css',
+                cwd: 'test/',
+                base: 'test/fixtures',
+                contents: fs.readFileSync('test/fixtures/originalkeepcomments.css')
+            });
+            var stream = stripCode({
+                start_comment: "keepcomments",
+                end_comment: "end-keepcomments"
+            });
+            stream.on('data', function(newFile) {
+                should.exist(newFile);
+                should.exist(newFile.contents);
+                String(newFile.contents).should.equal('');
                 done();
             });
             stream.write(file);
