@@ -12,8 +12,8 @@ module.exports = function (options) {
         options.end_comment = (typeof options.end_comment === 'undefined') ? 'end-test-code' : options.end_comment;
         options.keep_comments = typeof options.keep_comments === 'undefined' ? false : options.keep_comments;
 
-        var pattern = options.pattern || new RegExp("([\\t ]*\\/\\* ?" + options.start_comment + " ?\\*\\/)[\\s\\S]*?(\\/\\* ?" + options.end_comment + " ?\\*\\/[\\t ]*\\n?)", "g");
-
+        var pattern = options.pattern || new RegExp("([\\t ]*\\/\\*\!? ?" + options.start_comment + " ?\\*\\/)[\\s\\S]*?(\\/\\*\!? ?" + options.end_comment + " ?\\*\\/[\\t ]*\\n?)", "g");
+        
         if (isStream) {
             return callback(new Error('gulp-strip-code: Streaming not supported'), file);
         }
