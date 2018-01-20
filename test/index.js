@@ -34,6 +34,23 @@ describe('gulp-replace', function() {
             stream.write(file);
             stream.end();
         });
+        it('should remove code from start_comment to end_comment on a buffer with default options on CRLF file', function(done) {
+            var file = new gutil.File({
+                path: 'test/fixtures/win-default.crlf',
+                cwd: 'test/',
+                base: 'test/fixtures',
+                contents: fs.readFileSync('test/fixtures/win-default.crlf')
+            });
+            var stream = stripCode();
+            stream.on('data', function(newFile) {
+                should.exist(newFile);
+                should.exist(newFile.contents);
+                String(newFile.contents).should.equal(fs.readFileSync('test/expected/win-modified.crlf', 'utf8'));
+                done();
+            });
+            stream.write(file);
+            stream.end();
+        });
         it('should remove pattern', function(done) {
             var file = new gutil.File({
                 path: 'test/fixtures/original.js',
