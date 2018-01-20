@@ -111,6 +111,27 @@ describe('gulp-replace', function() {
             stream.write(file);
             stream.end();
         });
+        it('should remove code from start_comment to end_comment with a block comment', function(done) {
+            var file = new gutil.File({
+                path: 'test/fixtures/originalremoveblockcomments.js',
+                cwd: 'test/',
+                base: 'test/fixtures',
+                contents: fs.readFileSync('test/fixtures/originalremoveblockcomments.js')
+            });
+            var stream = stripCode({
+                start_comment: "test-code",
+                end_comment: "end-test-code",
+                comment_all: true
+            });
+            stream.on('data', function(newFile) {
+                should.exist(newFile);
+                should.exist(newFile.contents);
+                String(newFile.contents).should.equal(fs.readFileSync('test/expected/modifiedremoveblockcomments.js', 'utf8'));
+                done();
+            });
+            stream.write(file);
+            stream.end();
+        });
         it('should remove code from start_comment to end_comment without keeping comments with the option specified and false', function(done) {
             var file = new gutil.File({
                 path: 'test/fixtures/originalkeepcomments.css',

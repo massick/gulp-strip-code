@@ -2,7 +2,7 @@ gulp-strip-code
 ===============
 
 The gulp-strip-code plugin is used to remove sections of code.
-Usefull to remove code from production builds that are only needed in development and test environments, or to remove custom internationalized information. 
+Usefull to remove code from production builds that are only needed in development and test environments, or to remove custom internationalized information.
 This plugin uses start and end comments to identify the code sections to strip out. For example:
 
 > Inspired by [grunt-strip-code](https://github.com/nuzzio/grunt-strip-code)
@@ -78,6 +78,12 @@ Type: `RegExp`
 Default value: (a generated RegExp matching the start and end comments)
 
 If the default start and end comment matching doesn't work for you needs, you can supply your own RegExp to match against. If the `pattern` option is specified, the `start_comment` and `end_comment` options are ignored.
+
+#### options.comment_all
+Type: `Boolean`
+Default value: `false`
+
+Remove a whole comment block.
 
 ## Tests
 
