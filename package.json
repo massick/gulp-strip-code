@@ -37,11 +37,13 @@
   },
   "homepage": "https://github.com/massick/gulp-strip-code",
   "devDependencies": {
-    "gulp-util": "^2.2.19",
-    "mocha": "^1.20.1",
-    "should": "^4.0.4"
+    "fs": "0.0.1-security",
+    "mocha": "^5.0.0",
+    "path": "^0.12.7",
+    "should": "^13.2.1",
+    "vinyl": "^2.1.0"
   },
   "dependencies": {
-    "event-stream": "^3.1.5"
+    "event-stream": "^3.3.4"
   }
 }

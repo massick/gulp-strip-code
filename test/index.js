@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var es = require('event-stream');
 var should = require('should');
-var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
 require('mocha');
 
 var makeFile = function(contents) {
@@ -18,7 +18,7 @@ var makeFile = function(contents) {
 describe('gulp-replace', function() {
     describe('stripCode()', function() {
         it('should remove code from start_comment to end_comment on a buffer with default options', function(done) {
-            var file = new gutil.File({
+            var file = new Vinyl({
                 path: 'test/fixtures/original-default.js',
                 cwd: 'test/',
                 base: 'test/fixtures',
@@ -35,7 +35,7 @@ describe('gulp-replace', function() {
             stream.end();
         });
         it('should remove code from start_comment to end_comment on a buffer with default options on CRLF file', function(done) {
-            var file = new gutil.File({
+            var file = new Vinyl({
                 path: 'test/fixtures/win-default.crlf',
                 cwd: 'test/',
                 base: 'test/fixtures',
@@ -52,7 +52,7 @@ describe('gulp-replace', function() {
             stream.end();
         });
         it('should remove pattern', function(done) {
-            var file = new gutil.File({
+            var file = new Vinyl({
                 path: 'test/fixtures/original.js',
                 cwd: 'test/',
                 base: 'test/fixtures',
@@ -71,7 +71,7 @@ describe('gulp-replace', function() {
             stream.end();
         });
         it('should remove code from start_comment to end_comment on a buffer', function(done) {
-            var file = new gutil.File({
+            var file = new Vinyl({
                 path: 'test/fixtures/original.css',
                 cwd: 'test/',
                 base: 'test/fixtures',
@@ -91,7 +91,7 @@ describe('gulp-replace', function() {
             stream.end();
         });
         it('should remove code from start_comment to end_comment but keep comments with the option specified and true', function(done) {
-            var file = new gutil.File({
+            var file = new Vinyl({
                 path: 'test/fixtures/originalkeepcomments.css',
                 cwd: 'test/',
                 base: 'test/fixtures',
@@ -112,7 +112,7 @@ describe('gulp-replace', function() {
             stream.end();
         });
         it('should remove code from start_comment to end_comment with a block comment', function(done) {
-            var file = new gutil.File({
+            var file = new Vinyl({
                 path: 'test/fixtures/originalremoveblockcomments.js',
                 cwd: 'test/',
                 base: 'test/fixtures',
@@ -133,7 +133,7 @@ describe('gulp-replace', function() {
             stream.end();
         });
         it('should remove code from start_comment to end_comment without keeping comments with the option specified and false', function(done) {
-            var file = new gutil.File({
+            var file = new Vinyl({
                 path: 'test/fixtures/originalkeepcomments.css',
                 cwd: 'test/',
                 base: 'test/fixtures',
@@ -154,7 +154,7 @@ describe('gulp-replace', function() {
             stream.end();
         });
         it('should remove code from start_comment to end_comment without keeping comments with the option not specified', function(done) {
-            var file = new gutil.File({
+            var file = new Vinyl({
                 path: 'test/fixtures/originalkeepcomments.css',
                 cwd: 'test/',
                 base: 'test/fixtures',
@@ -174,7 +174,7 @@ describe('gulp-replace', function() {
             stream.end();
         });
         it('should error on a stream', function(done) {
-            var file = new gutil.File({
+            var file = new Vinyl({
                 path: 'test/fixtures/original.css',
                 cwd: 'test/',
                 base: 'test/fixtures',
