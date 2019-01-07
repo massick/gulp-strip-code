@@ -44,6 +44,6 @@
     "vinyl": "^2.1.0"
   },
   "dependencies": {
-    "event-stream": "^3.3.4"
+    "event-stream": "^4.0.1"
   }
 }
