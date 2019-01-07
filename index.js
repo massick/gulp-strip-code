@@ -25,10 +25,10 @@ module.exports = function (options) {
 
         if (isBuffer) {
             if(options.keep_comments){
-                file.contents = new Buffer(String(file.contents).replace(pattern, "$1\n$2"));
+                file.contents = Buffer.from(String(file.contents).replace(pattern, "$1\n$2"));
             }
             else{
-                file.contents = new Buffer(String(file.contents).replace(pattern, ""));
+                file.contents = Buffer.from(String(file.contents).replace(pattern, ""));
             }
             return callback(null, file);
         }
