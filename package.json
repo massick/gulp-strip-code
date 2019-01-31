@@ -42,6 +42,7 @@
     "vinyl": "^2.1.0"
   },
   "dependencies": {
+    "detect-newline": "^2.1.0",
     "event-stream": "3.3.4"
   }
 }

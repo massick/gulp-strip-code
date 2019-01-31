@@ -1,4 +1,5 @@
 var es = require('event-stream');
+var detectNewline = require('detect-newline');
 
 module.exports = function (options) {
     var doStrip = function (file, callback) {
@@ -24,9 +25,11 @@ module.exports = function (options) {
             return callback(new Error('gulp-strip-code: Streaming not supported'), file);
         }
 
+        var eol = detectNewline.graceful(String(file.contents));
+
         if (isBuffer) {
             if(options.keep_comments){
-                file.contents = Buffer.from(String(file.contents).replace(pattern, "$1\n$2"));
+                file.contents = Buffer.from(String(file.contents).replace(pattern, "$1" + eol + "$2"));
             }
             else{
                 file.contents = Buffer.from(String(file.contents).replace(pattern, ""));
