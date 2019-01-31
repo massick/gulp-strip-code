@@ -6,6 +6,10 @@ module.exports = function (options) {
         var isStream = file.contents && typeof file.contents.on === 'function' && typeof file.contents.pipe === 'function';
         var isBuffer = file.contents instanceof Buffer;
 
+        if (isStream) {
+          return callback(new Error('gulp-strip-code: Streaming not supported'), file);
+        }
+
         if (options == null) {
             options = {};
         };
@@ -19,10 +23,6 @@ module.exports = function (options) {
             var pattern = options.pattern || new RegExp("([\\t ]*\\/\\* ?" + options.start_comment + ")[\\s\\S]*?(" + options.end_comment + " ?\\*\\/[\\t ]*\\r?\\n?)", "g");
         } else{
             var pattern = options.pattern || new RegExp("([\\t ]*\\/\\* ?" + options.start_comment + " ?\\*\\/)[\\s\\S]*?(\\/\\* ?" + options.end_comment + " ?\\*\\/[\\t ]*\\r?\\n?)", "g");
-        }
-
-        if (isStream) {
-            return callback(new Error('gulp-strip-code: Streaming not supported'), file);
         }
 
         var eol = detectNewline.graceful(String(file.contents));
