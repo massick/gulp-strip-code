@@ -5,13 +5,14 @@ module.exports = function (options) {
         var isStream = file.contents && typeof file.contents.on === 'function' && typeof file.contents.pipe === 'function';
         var isBuffer = file.contents instanceof Buffer;
 
-        if (typeof options === 'undefined') {
+        if (options == null) {
             options = {};
         };
-        options.start_comment = (typeof options.start_comment === 'undefined') ? 'test-code' : options.start_comment;
-        options.end_comment = (typeof options.end_comment === 'undefined') ? 'end-test-code' : options.end_comment;
-        options.keep_comments = typeof options.keep_comments === 'undefined' ? false : options.keep_comments;
-        options.comment_all = typeof options.comment_all === 'undefined' ? false : options.comment_all;
+
+        options.start_comment = options.start_comment == null ? 'test-code' : options.start_comment;
+        options.end_comment = options.end_comment == null ? 'end-test-code' : options.end_comment;
+        options.keep_comments = options.keep_comments == null ? false : options.keep_comments;
+        options.comment_all = options.comment_all == null ? false : options.comment_all;
 
         if (options.comment_all){
             var pattern = options.pattern || new RegExp("([\\t ]*\\/\\* ?" + options.start_comment + ")[\\s\\S]*?(" + options.end_comment + " ?\\*\\/[\\t ]*\\r?\\n?)", "g");
