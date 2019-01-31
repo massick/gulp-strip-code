@@ -1,19 +1,8 @@
 var stripCode = require('../');
 var fs = require('fs');
-var path = require('path');
-var es = require('event-stream');
 var should = require('should');
 var Vinyl = require('vinyl');
 require('mocha');
-
-var makeFile = function(contents) {
-    return new gutil.File({
-        path: 'test/file.txt',
-        cwd: 'test/',
-        base: 'test/',
-        contents: contents
-    });
-};
 
 describe('gulp-replace', function() {
     describe('stripCode()', function() {
